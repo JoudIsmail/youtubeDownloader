@@ -30,8 +30,8 @@ public class View extends GridPane{
         textField = new TextField();
         HBox hBox = new HBox(5);
         toggleGroup = new ToggleGroup();
-        high = new RadioButton("Highest Reselution");
-        RadioButton low = new RadioButton("Lowest Reselution");
+        high = new RadioButton("Highest Resolution");
+        RadioButton low = new RadioButton("Lowest Resolution");
         RadioButton audio = new RadioButton("Only Audio");
         high.setToggleGroup(toggleGroup);
         low.setToggleGroup(toggleGroup);
