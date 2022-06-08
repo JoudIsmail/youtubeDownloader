@@ -4,7 +4,10 @@ package gui.mvp;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -15,6 +18,7 @@ public class View extends GridPane{
     private Presenter presenter;
     private ToggleGroup toggleGroup;
     private TextField textField;
+    private RadioButton high;
     
     public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
@@ -26,7 +30,7 @@ public class View extends GridPane{
         textField = new TextField();
         HBox hBox = new HBox(5);
         toggleGroup = new ToggleGroup();
-        RadioButton high = new RadioButton("Highest Reselution");
+        high = new RadioButton("Highest Reselution");
         RadioButton low = new RadioButton("Lowest Reselution");
         RadioButton audio = new RadioButton("Only Audio");
         high.setToggleGroup(toggleGroup);
@@ -45,6 +49,17 @@ public class View extends GridPane{
         this.setVgap(10);
         this.setHgap(10);
         this.setPadding(new Insets(10));
+    }
+    
+    public void alert() {
+        Alert alert = new Alert(AlertType.NONE,
+                        "Download Completed!",ButtonType.OK);
+        alert.show();
+    }
+    
+    public void reset() {
+        textField.clear();
+        high.setSelected(true);
     }
     
     public String getSelectedOption() {

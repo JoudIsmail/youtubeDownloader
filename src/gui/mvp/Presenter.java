@@ -29,5 +29,9 @@ public class Presenter {
         if (!downloadOption.isEmpty()) {
             model.download(stringBuilder.toString());
         }
+        if (model.getProgress().equals("Complete")) {
+            view.reset();
+            view.alert();
+        }
     }
 }

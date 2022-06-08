@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Model {
+    private String status;
     public void download(String args) {
         String s = null;
         try {
@@ -20,6 +21,7 @@ public class Model {
                        System.out.println("Here is the standard output of the command:\n");
                        while ((s = stdInput.readLine()) != null) {
                            System.out.println(s);
+                           callOnFinished(s);
                        }
                        
                        // read any errors from the attempted command
@@ -28,12 +30,19 @@ public class Model {
                            System.out.println(s);
                        }
                        
-                       System.exit(0);
         } catch (IOException e) {
             // TODO: handle exception
             System.out.println("exception happened - here's what I know: ");
             e.printStackTrace();
             System.exit(-1);
         }
+    }
+    
+    public void callOnFinished(String string) {
+        status = string;
+    }
+    
+    public String getProgress() {
+        return status;
     }
 }
