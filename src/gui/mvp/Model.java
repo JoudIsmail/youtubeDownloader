@@ -4,9 +4,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
 public class Model {
     private String status;
-    public void download(String args) {
+    private Presenter presenter;
+    
+    
+    
+
+    public Presenter getPresenter() {
+        return presenter;
+    }
+
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    public void download(String args) throws InterruptedException {
         String s = null;
         try {
             //"python script.py this is"
@@ -19,8 +33,10 @@ public class Model {
 
                        // read the output from the command
                        System.out.println("Here is the standard output of the command:\n");
+                       
                        while ((s = stdInput.readLine()) != null) {
                            System.out.println(s);
+                           progress(s);
                            callOnFinished(s);
                        }
                        
@@ -36,6 +52,14 @@ public class Model {
             e.printStackTrace();
             System.exit(-1);
         }
+    }
+    
+    public void progress(String string) {
+        if (string.matches("\\d+")) {
+            int progress = Integer.valueOf(string);
+            System.out.println("working");
+            presenter.refresh(progress);
+            }
     }
     
     public void callOnFinished(String string) {

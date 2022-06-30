@@ -1,6 +1,7 @@
 package gui.mvp;
 
-import javafx.scene.layout.GridPane;
+
+import javafx.scene.layout.VBox;
 
 public class Presenter {
     private View view;
@@ -14,11 +15,11 @@ public class Presenter {
         this.model = model;
     }
     
-    public GridPane getUI() {
+    public VBox getUI() {
         return this.view;
     }
     
-    public void download() {
+    public void download() throws InterruptedException {
         String string = "python script.py ";
         String url = view.getTextField();
         StringBuilder stringBuilder = new StringBuilder();
@@ -33,5 +34,9 @@ public class Presenter {
             view.reset();
             view.alert();
         }
+    }
+    
+    public void refresh(int num) {
+        view.setProg(num);
     }
 }

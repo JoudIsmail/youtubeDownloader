@@ -16,6 +16,7 @@ public class Main extends Application{
         View view = new View();
         Model model = new Model();
         
+        model.setPresenter(presenter);
         presenter.setView(view);
         presenter.setModel(model);
         view.setPresenter(presenter);
